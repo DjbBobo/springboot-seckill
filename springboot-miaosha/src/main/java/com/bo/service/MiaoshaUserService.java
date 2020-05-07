@@ -35,7 +35,7 @@ public class MiaoshaUserService {
     @Autowired
     private JsonUtil jsonUtil;
     @Autowired
-    private JavaMailSenderImpl mailSender;
+    private MailUtil mailUtil;
 
     /**
      * 添加用户
@@ -111,13 +111,8 @@ public class MiaoshaUserService {
         //6位随机验证码
         String code = CodeUtil.getCheckCode(6);
         jedisUtil.set(MiaoshaUserKey.checkCode, email, code, 180);
-
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setSubject("秒杀系统注册账号测试");
-        mailMessage.setText("验证码:"+code);
-        mailMessage.setFrom("xxxxxx@qq.com"); // 发件人
-        mailMessage.setTo(email); //收件人
-        mailSender.send(mailMessage);
+        //发送邮件
+        mailUtil.sendEmail(email,code);
         logger.info("Send Email Success");
     }
 }

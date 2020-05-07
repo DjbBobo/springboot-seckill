@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bo.mapper.MiaoshaUserMapper">
+    <select id="queryUserList" resultType="MiaoshaUser">
+      select * from miaosha_user
+    </select>
+    
+    <select id="queryUserById" resultType="MiaoshaUser">
+        select * from miaosha_user where id=#{id}
+    </select>
+
+    <select id="queryUserByEmail" resultType="MiaoshaUser">
+        select * from miaosha_user where email=#{email}
+    </select>
+    
+    <insert id="addUser" parameterType="MiaoshaUser">
+      insert into miaosha_user(email,username,password,salt,register_date) values(#{email},#{username},#{password},#{salt},#{registerDate})
+    </insert>
+
+</mapper>

@@ -51,7 +51,7 @@ public class OrderService {
      */
     public void createOrder(MiaoshaUser user,MiaoshaGoodsVo goods) {
         OrderInfo orderInfo = new OrderInfo();
-        Long orderId = Long.valueOf(idWorker.nextId());
+        Long orderId = Long.valueOf(idWorker.nextId());//雪花算法生成唯一id
         orderInfo.setId(orderId);
         orderInfo.setUserId(user.getId());
         orderInfo.setGoodsId(goods.getId());
